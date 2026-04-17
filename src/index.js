@@ -1,6 +1,7 @@
 import express from 'express'
 import exphbs from 'express-handlebars'
 import productRouter from './routes/productRoutes.js'
+import db from './config/db.js'
 import path from 'path'
 
 const __dirname = path.resolve()
@@ -17,6 +18,15 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'src/public')))
 
 // Sincronización de la BD
+const connectDB = async () => {
+  try {
+    await db.sync()
+    console.log("Synchronized database")
+  } catch (error) {
+    console.error(error)
+  }
+};
+connectDB()
 
 // Configuración de HBS
 app.set('view engine', 'hbs')

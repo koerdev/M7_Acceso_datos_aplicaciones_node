@@ -1,0 +1,37 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 col-md-6 col-lg-5">
+
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+
+          <h3 class="card-title text-center mb-4">
+            Crear Nueva Categoría
+          </h3>
+
+          <form action="/create-category" method="POST">
+
+            <div class="mb-3">
+              <label for="name" class="form-label">
+                Nombre de la Categoría
+              </label>
+              <input type="text" id="name" name="name" class="form-control" required placeholder="Ej. Periféricos">
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">
+              Guardar Categoría
+            </button>
+          </form>
+
+          <div class="text-center mt-4">
+            <a href="/create-product" class="link-secondary text-decoration-none">
+              ← Volver a Agregar Producto
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

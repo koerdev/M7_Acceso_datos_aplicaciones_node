@@ -1,0 +1,61 @@
+<div class="container py-4">
+  <h1 class="mb-4">{{titulo}}</h1>
+
+  <!-- Barra de acciones -->
+  <div class="d-flex flex-wrap gap-2 mb-4">
+    <a href="/create-product" class="btn btn-primary">
+      Agregar Producto
+    </a>
+
+    {{#if filter}}
+    <a href="/" class="btn btn-secondary">
+      Ver todos los productos
+    </a>
+
+    <a href="/categories/edit/{{category.id}}" class="btn btn-warning">
+      Editar Categoría "{{category.name}}"
+    </a>
+    {{/if}}
+  </div>
+
+  <!-- Grid de productos -->
+  <div class="row g-4">
+    {{#each products}}
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card h-100 shadow-sm">
+
+        <div class="card-body d-flex flex-column">
+
+          <a href="/category/{{this.categoryId}}" class="text-decoration-none mb-2">
+            <span class="badge bg-primary">
+              {{this.Category.name}}
+            </span>
+          </a>
+
+          <h5 class="card-title">{{this.title}}</h5>
+          <p class="card-text flex-grow-1">{{this.description}}</p>
+
+          <h6 class="fw-bold">${{this.price}}</h6>
+
+          <hr>
+
+          <div class="d-flex gap-2">
+            <a href="/edit/{{this.id}}" class="w-100">
+              <button class="btn btn-warning w-100">Editar</button>
+            </a>
+
+            <form action="/delete/{{this.id}}" method="POST" class="w-100 m-0">
+              <button type="submit" class="btn btn-danger w-100">Eliminar</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    {{else}}
+    <div class="col-12 text-center">
+      <h3>No hay productos disponibles.</h3>
+    </div>
+    {{/each}}
+  </div>
+</div>

@@ -30,8 +30,15 @@ npm install
 ```
 
 ```bash
-# paso 4: crear archivo .env con la variable del puerto
-PORT = 3000
+# paso 4: crear archivo .env con las variables de entorno
+PORT = tu_puerto
+
+DB_USER = tu_usuario
+DB_PASSWORD = tu_password
+DB_HOST = tu_host
+DB_PORT = tu_puerto_bbdd
+DB_DATABASE = tu_bbdd
+DIALECT = tu_dialect
 ```
 
 ## Instrucciones para Ejecutar el Proyecto
@@ -44,11 +51,8 @@ npm run dev
 ```
 
 ```bash
-# prueba de rutas
-https://localhost:3000/
-https://localhost:3000/status
-https://localhost:3000/logs
-https://localhost:3000/log
+# ingresar a la ruta levantada por el servidor y navegar por el proyecto
+https://localhost:tu_puerto/
 ```
 
 ## Licencia

@@ -78,11 +78,50 @@ const deleteProduct = async (req, res) => {
   }
 }
 
+const getEditProductForm = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await Product.findByPk(id, { raw: true });
+    if (!product) {
+      res.render("error", {
+        message: "No existe",
+      });
+    }
+    const categories = await Category.findAll({ raw: true });
+
+    res.render("editFormProduct", {
+      pageTitle: 'Editar Producto',
+      categories,
+      product,
+    });
+  } catch (error) {
+    console.log(error)
+    res.status(500).send("Error al obtener los productos");
+  }
+}
+
+const updateProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, description, price, categoryId } = req.body;
+    await Product.update(
+      { title, description, price, categoryId },
+      { where: { id } },
+    );
+    res.redirect("/");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error al actualizar el producto");
+  }
+};
+
 export {
   home,
   getCreateCategoryForm,
   createCategory,
   getCreateProductForm,
   createProduct,
-  deleteProduct
+  deleteProduct,
+  getEditProductForm,
+  updateProduct
 }

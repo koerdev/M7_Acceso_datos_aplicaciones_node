@@ -5,7 +5,9 @@ import {
   createCategory,
   getCreateProductForm,
   createProduct,
-  deleteProduct
+  deleteProduct,
+  getEditProductForm,
+  updateProduct,
 } from '../controllers/productController.js'
 
 const router = express.Router()
@@ -19,5 +21,8 @@ router.get('/create-product', getCreateProductForm)
 router.post('/create-product', createProduct)
 
 router.post('/delete/:id', deleteProduct)
+
+router.get('/edit/:id', getEditProductForm)
+router.post('/update/:id', updateProduct)
 
 export default router

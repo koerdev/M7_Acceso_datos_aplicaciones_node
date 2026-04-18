@@ -20,7 +20,7 @@ const getCreateCategoryForm = async (req, res) => {
     })
   } catch (error) {
     console.log(error)
-    res.status(500).send("Error interno");
+    res.status(500).send("Error al obtener las categorías");
   }
 }
 
@@ -32,7 +32,7 @@ const createCategory = async (req, res) => {
     res.redirect("/create-product");
   } catch (error) {
     console.log(error)
-    res.status(500).send("Error interno");
+    res.status(500).send("Error al crear categoría");
   }
 }
 
@@ -45,7 +45,7 @@ const getCreateProductForm = async (req, res) => {
     })
   } catch (error) {
     console.log(error)
-    res.status(500).send("Error interno");
+    res.status(500).send("Error al obtener los productos");
   }
 }
 
@@ -62,8 +62,27 @@ const createProduct = async (req, res) => {
     res.redirect("/");
   } catch (error) {
     console.log(error)
-    res.status(500).send("Error interno");
+    res.status(500).send("Error al agregar producto");
   }
 }
 
-export { home, getCreateCategoryForm, createCategory, getCreateProductForm, createProduct }
+const deleteProduct = async (req, res) => {
+  try {
+    const { id } = req.params
+    await Product.destroy({ where: { id } });
+
+    res.redirect("/");
+  } catch (error) {
+    console.log(error)
+    res.status(500).send("Error al borrar producto");
+  }
+}
+
+export {
+  home,
+  getCreateCategoryForm,
+  createCategory,
+  getCreateProductForm,
+  createProduct,
+  deleteProduct
+}

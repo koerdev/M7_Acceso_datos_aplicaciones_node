@@ -1,5 +1,12 @@
 import express from 'express'
-import { home, getCreateCategoryForm, createCategory, getCreateProductForm, createProduct } from '../controllers/productController.js'
+import {
+  home,
+  getCreateCategoryForm,
+  createCategory,
+  getCreateProductForm,
+  createProduct,
+  deleteProduct
+} from '../controllers/productController.js'
 
 const router = express.Router()
 
@@ -10,5 +17,7 @@ router.post('/create-category', createCategory)
 
 router.get('/create-product', getCreateProductForm)
 router.post('/create-product', createProduct)
+
+router.post('/delete/:id', deleteProduct)
 
 export default router
